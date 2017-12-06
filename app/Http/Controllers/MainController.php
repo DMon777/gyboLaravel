@@ -11,7 +11,7 @@ class MainController extends Controller
     public function actionMain()
     {
        $menu = Menu::all();
-       $title = 'test title';
+       $title = 'Home Page';
        return view('main_page',['title' => $title,'menu' => $menu]);
     }
 

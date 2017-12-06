@@ -73,14 +73,16 @@
                     </button>
 
 
-                    <ul class="mainmenu pull-right">
-                        @foreach($menu as $val)
-                        <li class="">
-                            <a href="{{ $val->url  }}">{{ $val->name  }}</a>
-                        </li>
-                        @endforeach
-                    </ul>
+                    {{--<ul class="mainmenu pull-right">--}}
+                        {{--@foreach($menu as $val)--}}
+                        {{--<li class="">--}}
+                            {{--<a href="{{ $val->url  }}">{{ $val->name  }}</a>--}}
+                        {{--</li>--}}
+                        {{--@endforeach--}}
+                    {{--</ul>--}}
 
+                    @inject('menu',"App\Repositories\MenuRep")
+                     {{ $menu->getMenu()  }}
 
                     {{--<ul class="mainmenu pull-right">--}}
                         {{--<li class="">--}}
