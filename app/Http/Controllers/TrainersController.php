@@ -19,11 +19,23 @@ class TrainersController extends Controller
     public function actionTrainer($id)
     {
 
-
         $trainer = Trainers::find($id);
         $title = $trainer->name;
 
-        return view('trainer_detail_page',['title' => $title,'trainer' => $trainer]);
+        $trainer_classes = $trainer->classes;
+        /*
+         либо так для уточнения выборки
+        $trainer_classes = $trainer->classes()->select('classes.id','classes.name')->get();
+         но обязательно уточнять таблицу а то из-за повторяющихся имен полей выбрасывает
+        ошибку!!!
+         */
+        
+        return view('trainer_detail_page',
+            [
+                'title' => $title,
+                'trainer' => $trainer,
+                'trainer_classes' => $trainer_classes
+            ]);
 
     }
 

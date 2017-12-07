@@ -70,12 +70,11 @@
                                             <div class="select-input-wrapper">
                                                 <select class="select-input" name="category">
                                                     <option value="" selected="selected">Select Category</option>
-                                                    <option value="General Motors">Civil Litigation</option>
-                                                    <option value="Land Rover">Business Taxation</option>
-                                                    <option value="Lexus">Trade & Finance law</option>
-                                                    <option value="Lincoln">Accident Injuries</option>
-                                                    <option value="Lincoln">Family law</option>
-                                                    <option value="Lincoln">Other</option>
+                                                    @foreach($trainer_classes as $class)
+                                                        <option value="{{ $class->id  }}">
+                                                            {{ $class->name }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -95,7 +94,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
