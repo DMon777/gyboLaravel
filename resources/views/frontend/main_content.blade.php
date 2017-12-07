@@ -2,42 +2,55 @@
     <div class="container">
         <div class="pb-200">
             <div class="row">
-                <div class="col-xs-6 col-sm-4 col-md-2">
-                    <div class="img-box text-center">
-                        <a class="thumb" href="#"><img src="{{asset('assets/images/photos/about01.jpg')}}" alt=""></a>
-                        <h4><a href="#" class="title"><span class="color-theme">Running</span> Class</a></h4>
+
+                @foreach($classes as $class)
+
+                    <div class="col-xs-6 col-sm-4 col-md-2">
+                        <div class="img-box text-center">
+                        <a class="thumb" href="#"><img src="{{asset('assets/images/photos/'.$class->img)}}" alt=""></a>
+                        <h4><a href="class/{{ $class->id }}" class="title">{{ $class->name }}</a></h4>
                     </div>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-2">
-                    <div class="img-box text-center">
-                        <a class="thumb" href="#"><img src="{{asset('assets/images/photos/about02.jpg')}}" alt=""></a>
-                        <h4><a href="#" class="title"><span class="color-theme">Weight</span> Loose</a></h4>
                     </div>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-2">
-                    <div class="img-box text-center">
-                        <a class="thumb" href="#"><img src="{{asset('assets/images/photos/about03.jpg')}}" alt=""></a>
-                        <h4><a href="#" class="title"><span class="color-theme">Aerobics</span> Class</a></h4>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-2">
-                    <div class="img-box text-center">
-                        <a class="thumb" href="#"><img src="{{asset('assets/images/photos/about04.jpg')}}" alt=""></a>
-                        <h4><a href="#" class="title"><span class="color-theme">Gym</span> Fitness</a></h4>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-2">
-                    <div class="img-box text-center">
-                        <a class="thumb" href="#"><img src="{{asset('assets/images/photos/about05.jpg')}}" alt=""></a>
-                        <h4><a href="#" class="title"><span class="color-theme">Yoga</span> Class</a></h4>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-2">
-                    <div class="img-box text-center">
-                        <a class="thumb" href="#"><img src="{{asset('assets/images/photos/about06.jpg')}}" alt=""></a>
-                        <h4><a href="#" class="title"><span class="color-theme">Body</span> Bulding</a></h4>
-                    </div>
-                </div>
+
+                    @endforeach
+
+
+                    {{--<div class="col-xs-6 col-sm-4 col-md-2">--}}
+                    {{--<div class="img-box text-center">--}}
+                        {{--<a class="thumb" href="#"><img src="{{asset('assets/images/photos/about01.jpg')}}" alt=""></a>--}}
+                        {{--<h4><a href="#" class="title"><span class="color-theme">Running</span> Class</a></h4>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="col-xs-6 col-sm-4 col-md-2">--}}
+                    {{--<div class="img-box text-center">--}}
+                        {{--<a class="thumb" href="#"><img src="{{asset('assets/images/photos/about02.jpg')}}" alt=""></a>--}}
+                        {{--<h4><a href="#" class="title"><span class="color-theme">Weight</span> Loose</a></h4>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="col-xs-6 col-sm-4 col-md-2">--}}
+                    {{--<div class="img-box text-center">--}}
+                        {{--<a class="thumb" href="#"><img src="{{asset('assets/images/photos/about03.jpg')}}" alt=""></a>--}}
+                        {{--<h4><a href="#" class="title"><span class="color-theme">Aerobics</span> Class</a></h4>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="col-xs-6 col-sm-4 col-md-2">--}}
+                    {{--<div class="img-box text-center">--}}
+                        {{--<a class="thumb" href="#"><img src="{{asset('assets/images/photos/about04.jpg')}}" alt=""></a>--}}
+                        {{--<h4><a href="#" class="title"><span class="color-theme">Gym</span> Fitness</a></h4>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="col-xs-6 col-sm-4 col-md-2">--}}
+                    {{--<div class="img-box text-center">--}}
+                        {{--<a class="thumb" href="#"><img src="{{asset('assets/images/photos/about05.jpg')}}" alt=""></a>--}}
+                        {{--<h4><a href="#" class="title"><span class="color-theme">Yoga</span> Class</a></h4>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="col-xs-6 col-sm-4 col-md-2">--}}
+                    {{--<div class="img-box text-center">--}}
+                        {{--<a class="thumb" href="#"><img src="{{asset('assets/images/photos/about06.jpg')}}" alt=""></a>--}}
+                        {{--<h4><a href="#" class="title"><span class="color-theme">Body</span> Bulding</a></h4>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>
@@ -116,102 +129,102 @@
 {{--</section>--}}
 
 <!--Popular Classes-->
-<section class="pt-80 pb-60">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <h1 class="text-uppercase">Our Popular <span class="color-theme">Classes</span></h1>
-                <p class="color-theme mb-50">''Lorem ipsum dolor sit amet''</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 col-md-4">
-                <div class="practise-area">
-                    <div class="thumb">
-                        <img src="{{asset('assets/images/photos/1.jpg')}}" alt="">
-                        <div class="round-style"></div>
-                    </div>
-                    <div class="practise-details">
-                        <i class="icon flaticon-silhouette"></i>
-                        <h4 class="title">Running Class</h4>
-                        <p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing. Odit qui minima praesentium illo obcaecati...</p>
-                        <a class="btn-thm btn-xs" href="#">Read more <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="practise-area">
-                    <div class="thumb">
-                        <img src="{{asset('assets/images/photos/2.jpg')}}" alt="">
-                        <div class="round-style"></div>
-                    </div>
-                    <div class="practise-details">
-                        <i class="icon flaticon-silhouette-3"></i>
-                        <h4 class="title">Yoga Class</h4>
-                        <p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing. Odit qui minima praesentium illo obcaecati...</p>
-                        <a class="btn-thm btn-xs" href="#">Read more <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="practise-area">
-                    <div class="thumb">
-                        <img src="{{asset('assets/images/photos/3.jpg')}}" alt="">
-                        <div class="round-style"></div>
-                    </div>
-                    <div class="practise-details">
-                        <i class="icon flaticon-silhouette-1"></i>
-                        <h4 class="title">Body Bulding</h4>
-                        <p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing. Odit qui minima praesentium illo obcaecati...</p>
-                        <a class="btn-thm btn-xs" href="#">Read more <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="practise-area">
-                    <div class="thumb">
-                        <img src="{{asset('assets/images/photos/4.jpg')}}" alt="">
-                        <div class="round-style"></div>
-                    </div>
-                    <div class="practise-details">
-                        <i class="icon flaticon-gym-1"></i>
-                        <h4 class="title">Gym Fitness</h4>
-                        <p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing. Odit qui minima praesentium illo obcaecati...</p>
-                        <a class="btn-thm btn-xs" href="#">Read more <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="practise-area">
-                    <div class="thumb">
-                        <img src="{{asset('assets/images/photos/5.jpg')}}" alt="">
-                        <div class="round-style"></div>
-                    </div>
-                    <div class="practise-details">
-                        <i class="icon flaticon-person"></i>
-                        <h4 class="title">Weight Loose</h4>
-                        <p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing. Odit qui minima praesentium illo obcaecati...</p>
-                        <a class="btn-thm btn-xs" href="#">Read more <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="practise-area">
-                    <div class="thumb">
-                        <img src="{{asset('assets/images/photos/6.jpg')}}" alt="">
-                        <div class="round-style"></div>
-                    </div>
-                    <div class="practise-details">
-                        <i class="icon flaticon-tool"></i>
-                        <h4 class="title">Cardio Program</h4>
-                        <p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing. Odit qui minima praesentium illo obcaecati...</p>
-                        <a class="btn-thm btn-xs" href="#">Read more <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+{{--<section class="pt-80 pb-60">--}}
+    {{--<div class="container">--}}
+        {{--<div class="row">--}}
+            {{--<div class="col-md-12 text-center">--}}
+                {{--<h1 class="text-uppercase">Our Popular <span class="color-theme">Classes</span></h1>--}}
+                {{--<p class="color-theme mb-50">''Lorem ipsum dolor sit amet''</p>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<div class="row">--}}
+            {{--<div class="col-sm-6 col-md-4">--}}
+                {{--<div class="practise-area">--}}
+                    {{--<div class="thumb">--}}
+                        {{--<img src="{{asset('assets/images/photos/1.jpg')}}" alt="">--}}
+                        {{--<div class="round-style"></div>--}}
+                    {{--</div>--}}
+                    {{--<div class="practise-details">--}}
+                        {{--<i class="icon flaticon-silhouette"></i>--}}
+                        {{--<h4 class="title">Running Class</h4>--}}
+                        {{--<p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing. Odit qui minima praesentium illo obcaecati...</p>--}}
+                        {{--<a class="btn-thm btn-xs" href="#">Read more <i class="fa fa-arrow-circle-right"></i></a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<div class="col-sm-6 col-md-4">--}}
+                {{--<div class="practise-area">--}}
+                    {{--<div class="thumb">--}}
+                        {{--<img src="{{asset('assets/images/photos/2.jpg')}}" alt="">--}}
+                        {{--<div class="round-style"></div>--}}
+                    {{--</div>--}}
+                    {{--<div class="practise-details">--}}
+                        {{--<i class="icon flaticon-silhouette-3"></i>--}}
+                        {{--<h4 class="title">Yoga Class</h4>--}}
+                        {{--<p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing. Odit qui minima praesentium illo obcaecati...</p>--}}
+                        {{--<a class="btn-thm btn-xs" href="#">Read more <i class="fa fa-arrow-circle-right"></i></a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<div class="col-sm-6 col-md-4">--}}
+                {{--<div class="practise-area">--}}
+                    {{--<div class="thumb">--}}
+                        {{--<img src="{{asset('assets/images/photos/3.jpg')}}" alt="">--}}
+                        {{--<div class="round-style"></div>--}}
+                    {{--</div>--}}
+                    {{--<div class="practise-details">--}}
+                        {{--<i class="icon flaticon-silhouette-1"></i>--}}
+                        {{--<h4 class="title">Body Bulding</h4>--}}
+                        {{--<p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing. Odit qui minima praesentium illo obcaecati...</p>--}}
+                        {{--<a class="btn-thm btn-xs" href="#">Read more <i class="fa fa-arrow-circle-right"></i></a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<div class="col-sm-6 col-md-4">--}}
+                {{--<div class="practise-area">--}}
+                    {{--<div class="thumb">--}}
+                        {{--<img src="{{asset('assets/images/photos/4.jpg')}}" alt="">--}}
+                        {{--<div class="round-style"></div>--}}
+                    {{--</div>--}}
+                    {{--<div class="practise-details">--}}
+                        {{--<i class="icon flaticon-gym-1"></i>--}}
+                        {{--<h4 class="title">Gym Fitness</h4>--}}
+                        {{--<p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing. Odit qui minima praesentium illo obcaecati...</p>--}}
+                        {{--<a class="btn-thm btn-xs" href="#">Read more <i class="fa fa-arrow-circle-right"></i></a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<div class="col-sm-6 col-md-4">--}}
+                {{--<div class="practise-area">--}}
+                    {{--<div class="thumb">--}}
+                        {{--<img src="{{asset('assets/images/photos/5.jpg')}}" alt="">--}}
+                        {{--<div class="round-style"></div>--}}
+                    {{--</div>--}}
+                    {{--<div class="practise-details">--}}
+                        {{--<i class="icon flaticon-person"></i>--}}
+                        {{--<h4 class="title">Weight Loose</h4>--}}
+                        {{--<p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing. Odit qui minima praesentium illo obcaecati...</p>--}}
+                        {{--<a class="btn-thm btn-xs" href="#">Read more <i class="fa fa-arrow-circle-right"></i></a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<div class="col-sm-6 col-md-4">--}}
+                {{--<div class="practise-area">--}}
+                    {{--<div class="thumb">--}}
+                        {{--<img src="{{asset('assets/images/photos/6.jpg')}}" alt="">--}}
+                        {{--<div class="round-style"></div>--}}
+                    {{--</div>--}}
+                    {{--<div class="practise-details">--}}
+                        {{--<i class="icon flaticon-tool"></i>--}}
+                        {{--<h4 class="title">Cardio Program</h4>--}}
+                        {{--<p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing. Odit qui minima praesentium illo obcaecati...</p>--}}
+                        {{--<a class="btn-thm btn-xs" href="#">Read more <i class="fa fa-arrow-circle-right"></i></a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</section>--}}
 
 <!--Class Time Table Section-->
 {{--<section class="bg-image theme-overlay overlay-white pt-80 pb-90" style="background-image:url(../../public/assets/images/parallax/image-1.jpg);">--}}
@@ -873,89 +886,27 @@
         <div class="row clearfix team-area-hvr">
 
             <!--Column-->
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <article class="team-area">
-                    <div class="row clearfix">
-                        <figure class="col-lg-6 col-md-12"><div class="image"><a href="#"><img src="{{asset('assets/images/team/team-1.jpg')}}" alt=""></a></div></figure>
-                        <div class="col-lg-6 col-md-12">
-                            <div class="content">
-                                <div class="title-box">
-                                    <h4>Muhibbur  Rashid</h4>
-                                    <p>Female body trainer</p>
+            @foreach($trainers as $val)
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <article class="team-area">
+                        <div class="row clearfix">
+                            <figure class="col-lg-6 col-md-12"><div class="image"><a href="#"><img src="{{asset('assets/images/team/'.$val->img)}}" alt="{{ $val->name  }}"></a></div></figure>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="content">
+                                    <div class="title-box">
+                                        <h4>{{ $val->name  }}</h4>
+                                        <p>{{ $val->specialization  }}</p>
+                                    </div>
+                                    <div class="text">
+                                        <p>{{ $val->description }}</p>
+                                    </div>
+                                    <a href="/trainer/{{ $val->id  }}" class="btn-thm btn-xs">More info <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
-                                <div class="text">
-                                    <p>Etiam dignissim sit amet felis ac sagittis. Sed libero arcu, pharetra et ante opos pil, elementum scelerisque arcu. Curabitur sagittis non justo at ultricies odio ac.</p>
-                                </div>
-                                <a href="#" class="btn-thm btn-xs">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
-                    </div>
-                </article>
-            </div>
-
-            <!--Column-->
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <article class="team-area">
-                    <div class="row clearfix">
-                        <figure class="col-lg-6 col-md-12"><div class="image"><a href="#"><img src="{{asset('assets/images/team/team-2.jpg')}}" alt=""></a></div></figure>
-                        <div class="col-lg-6 col-md-12">
-                            <div class="content">
-                                <div class="title-box">
-                                    <h4>Marisa Goldberg</h4>
-                                    <p>Female body trainer</p>
-                                </div>
-                                <div class="text">
-                                    <p>Etiam dignissim sit amet felis ac sagittis. Sed libero arcu, pharetra et ante opos pil, elementum scelerisque arcu. Curabitur sagittis non justo at ultricies odio ac.</p>
-                                </div>
-                                <a href="#" class="btn-thm btn-xs">More info <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!--Column-->
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <article class="team-area">
-                    <div class="row clearfix">
-                        <figure class="col-lg-6 col-md-12"><div class="image"><a href="#"><img src="{{asset('assets/images/team/team-3.jpg')}}" alt=""></a></div></figure>
-                        <div class="col-lg-6 col-md-12">
-                            <div class="content">
-                                <div class="title-box">
-                                    <h4>Murglin Stiller</h4>
-                                    <p>Female body trainer</p>
-                                </div>
-                                <div class="text">
-                                    <p>Etiam dignissim sit amet felis ac sagittis. Sed libero arcu, pharetra et ante opos pil, elementum scelerisque arcu. Curabitur sagittis non justo at ultricies odio ac.</p>
-                                </div>
-                                <a href="#" class="btn-thm btn-xs">More info <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!--Column-->
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <article class="team-area">
-                    <div class="row clearfix">
-                        <figure class="col-lg-6 col-md-12"><div class="image"><a href="#"><img src="{{asset('assets/images/team/team-4.jpg')}}" alt=""></a></div></figure>
-                        <div class="col-lg-6 col-md-12">
-                            <div class="content">
-                                <div class="title-box">
-                                    <h4>Murglin Vanessa</h4>
-                                    <p>Female body trainer</p>
-                                </div>
-                                <div class="text">
-                                    <p>Etiam dignissim sit amet felis ac sagittis. Sed libero arcu, pharetra et ante opos pil, elementum scelerisque arcu. Curabitur sagittis non justo at ultricies odio ac.</p>
-                                </div>
-                                <a href="#" class="btn-thm btn-xs">More info <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-
+                    </article>
+                </div>
+        @endforeach
 
         </div>
     </div>

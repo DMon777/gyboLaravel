@@ -3,16 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Menu;
+use App\Classes;
+use App\Trainers;
 
 class MainController extends Controller
 {
 
     public function actionMain()
     {
-       $menu = Menu::all();
        $title = 'Home Page';
-       return view('main_page',['title' => $title,'menu' => $menu]);
+
+       $classes = Classes::select('id','name','img')->get();
+       $trainers = Trainers::select('id','name','specialization','description','img')->get();
+
+
+       return view('main_page',
+       [
+          'title' => $title,
+          'classes' => $classes,
+          'trainers' => $trainers
+       ]);
     }
 
 }

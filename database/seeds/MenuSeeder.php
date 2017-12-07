@@ -15,7 +15,7 @@ class MenuSeeder extends Seeder
             [
                 [
                     'name' => 'home',
-                    'url' => '/',
+                    'url' => '',
                     'order' => 1
                 ],
                 [

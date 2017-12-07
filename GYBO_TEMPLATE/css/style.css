@@ -3396,6 +3396,7 @@ button.mainmenu-toggler:hover {
 .welcome-section .img-box img {
 	border-radius: 50%;
 	width: 120px;
+    height:120px;
 }
 
 .welcome-section .img-box .title {

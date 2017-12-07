@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Menu;
 use App\Trainers;
 
 class TrainersController extends Controller
@@ -11,12 +10,21 @@ class TrainersController extends Controller
 
     public function actionTrainers()
     {
-
         $trainers = Trainers::all();
 
-        $menu = Menu::all();
         $title = 'Our Trainers';
-        return view('trainers_page',['title' => $title,'menu' => $menu,'trainers' => $trainers]);
+        return view('trainers_page',['title' => $title,'trainers' => $trainers]);
+    }
+
+    public function actionTrainer($id)
+    {
+
+
+        $trainer = Trainers::find($id);
+        $title = $trainer->name;
+
+        return view('trainer_detail_page',['title' => $title,'trainer' => $trainer]);
+
     }
 
 }

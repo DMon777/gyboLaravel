@@ -3396,6 +3396,7 @@ button.mainmenu-toggler:hover {
 .welcome-section .img-box img {
 	border-radius: 50%;
 	width: 120px;
+    height: 120px;
 }
 
 .welcome-section .img-box .title {
@@ -4083,7 +4084,7 @@ button.mainmenu-toggler:hover {
 .featured-blog-post .image img{
 	position:relative;
 	display:block;
-	width:100%;	
+	width:50%;
 }
 
 .featured-blog-post .post-lower{
