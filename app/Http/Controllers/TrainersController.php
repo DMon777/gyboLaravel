@@ -29,7 +29,7 @@ class TrainersController extends Controller
          но обязательно уточнять таблицу а то из-за повторяющихся имен полей выбрасывает
         ошибку!!!
          */
-        
+
         return view('trainer_detail_page',
             [
                 'title' => $title,

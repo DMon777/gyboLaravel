@@ -831,45 +831,24 @@
             </div>
         </div>
         <div class="row sm-width5-center">
-            <div class="col-md-4">
-                <div class="courses">
-                    <div class="thumb">
-                        <img src="{{asset('assets/images/courses/1.jpg')}}" alt="">
+
+                        @foreach($upcoming_courses as $course)
+                    <div class="col-md-4">
+                        <div class="courses">
+                            <div class="thumb">
+                                <img src="{{asset('assets/images/courses/'.$course->img)}}" alt="{{ $course->name }}">
+                            </div>
+                            <div class="caption">
+                                <h4 class="courses-price">${{ $course->price }}/M</h4>
+                                <h3 class="title">{{ $course->naneme }}</h3>
+                                <p>{{ $course->description  }}</p>
+                                <a href="#" class="btn-thm btn-xs">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="caption">
-                        <h4 class="courses-price">$59/M</h4>
-                        <h3 class="title">Relaxing Yoga Class</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit delectus, adipisci at!</p>
-                        <a href="#" class="btn-thm btn-xs">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="courses">
-                    <div class="thumb">
-                        <img src="{{asset('assets/images/courses/2.jpg')}}" alt="">
-                    </div>
-                    <div class="caption">
-                        <h4 class="courses-price">$59/M</h4>
-                        <h3 class="title">Weight Loose Class</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit delectus, adipisci at!</p>
-                        <a href="#" class="btn-thm btn-xs">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="courses">
-                    <div class="thumb">
-                        <img src="{{asset('assets/images/courses/3.jpg')}}" alt="">
-                    </div>
-                    <div class="caption">
-                        <h4 class="courses-price">$59/M</h4>
-                        <h3 class="title">Body Bulding Class</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit delectus, adipisci at!</p>
-                        <a href="#" class="btn-thm btn-xs">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
+
+                @endforeach
+
         </div>
     </div>
 </section>
@@ -967,78 +946,34 @@
             </div>
         </div>
         <div class="row sm-width5-center">
-            <div class="col-md-4">
-                <div class="pricing-table hvr-float-shadow mt-60">
-                    <div class="pricing-header">
-                        <div class="thumb">
-                            <img src="{{asset('assets/images/photos/pricing-1.jpg')}}" alt="">
+
+            @foreach($pacages as $pacage)
+
+                <div class="col-md-4">
+                    <div class="pricing-table hvr-float-shadow mt-60">
+                        <div class="pricing-header">
+                            <div class="thumb">
+                                <img src="{{asset('assets/images/photos/'.$pacage->img)}}" alt="{{$pacage->name}}">
+                            </div>
+                            <div class="package-price">
+                                ${{$pacage->price}} <br> <span>month</span>
+                            </div>
                         </div>
-                        <div class="package-price">
-                            $28 <br> <span>month</span>
+                        <div class="pricing-title">{{$pacage->namea}}</div>
+                        <div class="pricing-feature">
+                            <ul>
+                                @foreach($pacage->description as $item)
+
+                                <li>{{$item}}</li>
+                                @endforeach
+                            </ul>
                         </div>
+                        <div class="pricing-btn"><a class="btn btn-thm btn-xs" href="#">Sign Up Now</a></div>
                     </div>
-                    <div class="pricing-title">Standard</div>
-                    <div class="pricing-feature">
-                        <ul>
-                            <li>6 Days a Week</li>
-                            <li>Dedicated Trainer Alocated</li>
-                            <li>Diet Plan Included</li>
-                            <li>Dedicated Trainer Alocated</li>
-                            <li>Morning & Evening Batches</li>
-                            <li>Free Consultation</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-btn"><a class="btn btn-thm btn-xs" href="#">Sign Up Now</a></div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="pricing-table active hvr-float-shadow mt-60">
-                    <div class="pricing-header">
-                        <div class="thumb">
-                            <img src="{{asset('assets/images/photos/pricing-2.jpg')}}" alt="">
-                        </div>
-                        <div class="package-price">
-                            $28 <br> <span>month</span>
-                        </div>
-                    </div>
-                    <div class="pricing-title">Standard</div>
-                    <div class="pricing-feature">
-                        <ul>
-                            <li>6 Days a Week</li>
-                            <li>Dedicated Trainer Alocated</li>
-                            <li>Diet Plan Included</li>
-                            <li>Dedicated Trainer Alocated</li>
-                            <li>Morning & Evening Batches</li>
-                            <li>Free Consultation</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-btn"><a class="btn btn-thm btn-xs" href="#">Sign Up Now</a></div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="pricing-table hvr-float-shadow mt-60">
-                    <div class="pricing-header">
-                        <div class="thumb">
-                            <img src="{{asset('assets/images/photos/pricing-3.jpg')}}" alt="">
-                        </div>
-                        <div class="package-price">
-                            $28 <br> <span>month</span>
-                        </div>
-                    </div>
-                    <div class="pricing-title">Standard</div>
-                    <div class="pricing-feature">
-                        <ul>
-                            <li>6 Days a Week</li>
-                            <li>Dedicated Trainer Alocated</li>
-                            <li>Diet Plan Included</li>
-                            <li>Dedicated Trainer Alocated</li>
-                            <li>Morning & Evening Batches</li>
-                            <li>Free Consultation</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-btn"><a class="btn btn-thm btn-xs" href="#">Sign Up Now</a></div>
-                </div>
-            </div>
+
+            @endforeach
+
         </div>
     </div>
 </section>
