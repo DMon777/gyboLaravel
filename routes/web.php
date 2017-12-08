@@ -18,3 +18,5 @@ Route::get('/trainer/{id}','TrainersController@actionTrainer')->name('trainer');
 
 Route::get('/classes','ClassesController@actionClasses')->name('classes');
 Route::get('/class/{id}','ClassesController@actionClass')->name('class');
+
+Route::get('/timetable','TimeTableController@actionTimeTable')->name('timetable');
