@@ -14,6 +14,12 @@ class TimeTableController extends Controller
     графика может быть много классов.
     Выборку буду делать по дням недели order by time.
     Как то так, ну в общем еще нужно будет подумать
+    id 1
+    time 9.00
+    day sunday
+    class_id 3
+    flag 1
+
     */
     public function actionTimeTable()
     {
