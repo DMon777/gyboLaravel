@@ -16,7 +16,7 @@ class TrainersSeeder extends Seeder
 
             [
                 'name' => 'MUHIBBUR RASHID',
-                'phome' => '+49 123 456 789',
+                'phone' => '+49 123 456 789',
                 'email' => 'erange@email.com',
                 'specialization' => 'Female body trainer',
                 'description' => 'Etiam dignissim sit amet felis ac sagittis. Sed libero arcu, pharetra et ante opos pil, elementum scelerisque arcu. Curabitur sagittis non justo at ultricies odio ac.',
@@ -24,7 +24,7 @@ class TrainersSeeder extends Seeder
             ],
             [
                 'name' => 'MARISA GOLDBERG',
-                'phome' => '+49 123 456 789',
+                'phone' => '+49 123 456 789',
                 'email' => 'erange@email.com',
                 'specialization' => 'Female body trainer',
                 'description' => 'Etiam dignissim sit amet felis ac sagittis. Sed libero arcu, pharetra et ante opos pil, elementum scelerisque arcu. Curabitur sagittis non justo at ultricies odio ac.',
@@ -32,7 +32,7 @@ class TrainersSeeder extends Seeder
             ],
             [
                 'name' => 'MURGLIN STILLER',
-                'phome' => '+49 123 456 789',
+                'phone' => '+49 123 456 789',
                 'email' => 'erange@email.com',
                 'specialization' => 'Female body trainer',
                 'description' => 'Etiam dignissim sit amet felis ac sagittis. Sed libero arcu, pharetra et ante opos pil, elementum scelerisque arcu. Curabitur sagittis non justo at ultricies odio ac.',
@@ -40,7 +40,7 @@ class TrainersSeeder extends Seeder
             ],
             [
                 'name' => 'MURGLIN VANESSA',
-                'phome' => '+49 123 456 789',
+                'phone' => '+49 123 456 789',
                 'email' => 'erange@email.com',
                 'specialization' => 'Female body trainer',
                 'description' => 'Etiam dignissim sit amet felis ac sagittis. Sed libero arcu, pharetra et ante opos pil, elementum scelerisque arcu. Curabitur sagittis non justo at ultricies odio ac.',

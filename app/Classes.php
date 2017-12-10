@@ -11,9 +11,16 @@ class Classes extends Model
 
     public function trainers()
     {
-
         return $this->belongsToMany('App\Trainers',
             'trainers_classes','class_id','trainer_id'
         );
     }
+
+    public function schedules()
+    {
+        return $this->hasMany('App\Schedule','class_id','id');
+
+    }
+
+
 }

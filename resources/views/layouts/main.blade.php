@@ -62,7 +62,7 @@
         <div class="container">
             <div class="clearfix">
                 <div class="pull-left logo">
-                    <a href="index.html">
+                    <a href="{{ route('home')  }}">
                         <img src="{{asset('assets/images/logo1.png')}}" alt="FitClub">
                     </a>
                 </div>

@@ -20,3 +20,6 @@ Route::get('/classes','ClassesController@actionClasses')->name('classes');
 Route::get('/class/{id}','ClassesController@actionClass')->name('class');
 
 Route::get('/timetable','TimeTableController@actionTimeTable')->name('timetable');
+
+Route::get('/blog','BlogController@actionBlog')->name('blog');
+Route::get('/contact','ContactController@actionContact')->name('contact');
