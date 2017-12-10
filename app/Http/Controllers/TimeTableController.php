@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes;
 use Illuminate\Http\Request;
+use App\Schedule;
 
 class TimeTableController extends Controller
 {
@@ -24,7 +26,48 @@ class TimeTableController extends Controller
     public function actionTimeTable()
     {
         $title = 'Time Table';
-        return view('timetable_page',['title' => $title]);
+        $schedules = [];
+
+        $sunday_schedule = Schedule::where('day','=','SUNDAY')
+            ->orderBy('order')->get();
+        $schedules['SUNDAY'] = $sunday_schedule;
+
+        $monday_schedule = Schedule::where('day','=','MONDAY')
+            ->orderBy('order')->get();
+        $schedules['MONDAY'] = $monday_schedule;
+
+        $tuesday_schedule = Schedule::where('day','=','TUESDAY')
+            ->orderBy('order')->get();
+        $schedules['TUESDAY'] = $tuesday_schedule;
+
+        $wednesday_schedule = Schedule::where('day','=','WEDNESDAY')
+            ->orderBy('order')->get();
+        $schedules['WEDNESDAY'] = $wednesday_schedule;
+
+        $thursday_schedule = Schedule::where('day','=','THURSDAY')
+            ->orderBy('order')->get();
+        $schedules['THURSDAY'] = $thursday_schedule;
+
+        $friday_schedule = Schedule::where('day','=','FRIDAY')
+            ->orderBy('order')->get();
+        $schedules['FRIDAY'] = $friday_schedule;
+
+        $saturday_schedule = Schedule::where('day','=','SATURDAY')
+            ->orderBy('order')->get();
+        $schedules['SATURDAY'] = $saturday_schedule;
+
+
+//        foreach ($tuesday_schedule as $item) {
+//            echo $item->time.'<br>';
+//            $class = $item->classes;
+//            echo $class->name.'<br>';
+//            echo $class->img;
+//            echo "<hr>";
+//        }
+
+        return view('timetable_page',['title' => $title,
+            'schedules' => $schedules
+            ]);
     }
 
 
