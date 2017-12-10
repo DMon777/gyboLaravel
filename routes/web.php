@@ -22,4 +22,7 @@ Route::get('/class/{id}','ClassesController@actionClass')->name('class');
 Route::get('/timetable','TimeTableController@actionTimeTable')->name('timetable');
 
 Route::get('/blog','BlogController@actionBlog')->name('blog');
+Route::get('/article/{id}','BlogController@actionArticle')->name('article');
+Route::get('/category/{id}','BlogController@actionArticlesByCat')->name('category');
+Route::get('/tags/{name}','BlogController@actionArticlesByTagName')->name('tags');
 Route::get('/contact','ContactController@actionContact')->name('contact');

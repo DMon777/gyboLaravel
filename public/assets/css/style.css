@@ -1445,6 +1445,17 @@ button.mainmenu-toggler:hover {
 	color:#ffffff;
 }
 
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background: #ef173c;
+    color: #ffffff;
+    padding:7px 15px;
+    border-color: #ef173c;
+}
+
+li.active{
+    border:none;!important;
+}
+
 /*** 
 
 ====================================================================
