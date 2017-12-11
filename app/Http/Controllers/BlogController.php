@@ -7,6 +7,7 @@ use App\Articles;
 use App\Categories;
 use App\Tags;
 use DB;
+use Symfony\Component\HttpKernel\Tests\DependencyInjection\ArgumentWithoutTypeController;
 
 class BlogController extends Controller
 {
@@ -15,18 +16,31 @@ class BlogController extends Controller
 
         $title = "Blog";
 
-        $articles = DB::table('articles')->paginate(3);
-        $categories = Categories::orderBy('order')->get();
-        $tags = Tags::all();
-        $recent_posts = Articles::orderBy('date','desc')->limit(3)->get();
-
+      //  $articles = DB::table('articles')->paginate(3);
+        $articles = Articles::paginate(3);
 
         return view('blog_page',[
                 'title' => $title,
                 'articles' => $articles,
-                'categories' => $categories,
-                'tags' => $tags,
-                'recent_posts' => $recent_posts
             ]);
+    }
+
+    public function actionArticlesByCat($catId)
+    {
+        $category = Categories::find($catId);
+        $articles = Articles::where('category_id','=',$catId)->paginate(3);
+
+        $title = $category->name;
+        
+        return view('blog_page',[
+            'title' => $title,
+            'articles' => $articles,
+        ]);
+
+    }
+
+    public function actionArticlesByTagName($tagName)
+    {
+
     }
 }
