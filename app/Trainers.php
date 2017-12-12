@@ -17,4 +17,9 @@ class Trainers extends Model
             'class_id'
         );
     }
+
+    public function articles()
+    {
+        return $this->hasMany('App\Articles','author_id','id');
+    }
 }

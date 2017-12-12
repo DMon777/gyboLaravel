@@ -27,8 +27,8 @@
                                 <div class="content pl-30 pb-30">
                                     <h3 class="title"><a href="blog-detail.html">{{ $article->name }}</a></h3>
                                     <ul class="post-info list-inline fs-13">
-                                        <li><span class="icon fa fa-user"></span> <a href="#">{{ $article->author->name }}</a></li>
-                                        <li><span class="icon fa fa-tag"></span> <a href="#">Healh News</a></li>
+                                        <li><span class="icon fa fa-user"></span> <a href="{{ route('trainer',['id' => $article->author->id]) }}">{{ $article->author->name }}</a></li>
+                                        <li><span class="icon fa fa-tag"></span> <a href="{{ route('category',['id' => $article->category->id]) }}">{{ $article->category->name }}</a></li>
                                     </ul>
                                     <div class="text">
                                         <p>{{ $article->intro }}</p>

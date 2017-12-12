@@ -10,7 +10,7 @@ class Articles extends Model
 
     public function author()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Trainers');
     }
 
     public function category()
@@ -24,6 +24,11 @@ class Articles extends Model
             'articles_tags',
             'article_id',
             'tag_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comments','article_id','id');
     }
 
 }
