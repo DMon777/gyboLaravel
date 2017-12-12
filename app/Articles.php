@@ -18,4 +18,12 @@ class Articles extends Model
         return $this->belongsTo('App\Categories');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tags',
+            'articles_tags',
+            'article_id',
+            'tag_id');
+    }
+
 }

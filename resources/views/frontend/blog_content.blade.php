@@ -7,7 +7,7 @@
 
                 <!--Default Section-->
                 <section class="default-section blog-section pt-0 pb-0">
-
+                    @if(count($articles) != 0)
                     @foreach($articles as $article)
 
                         <article class="blog-post hvr-float-shadow">
@@ -41,6 +41,10 @@
 
                     @endforeach
 
+                    @else
+                        <p> в данном разделе статей нет!!!</p>
+
+                    @endif
 
                     <!--Pagination-->
                     <div class="pager-outer">

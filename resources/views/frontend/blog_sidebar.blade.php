@@ -35,7 +35,7 @@
            @foreach($recent_posts as $recent_post)
                 <div class="post">
                     <div class="post-thumb"><a href="{{ route('article',['id' => $recent_post->id]) }}"><img src="{{ asset('assets/images/blog/'.$recent_post->image) }}" alt="{{ $recent_post->name }}"></a></div>
-                    <h4><a href="{{ route('article',['id',$recent_post->id]) }}">{{ $recent_post->name }}</a></h4>
+                    <h4><a href="{{ route('article',['id' => $recent_post->id]) }}">{{ $recent_post->name }}</a></h4>
                     <div class="post-info text-right">
                         {{ date('d/m/Y',$recent_post->date) }}
                     </div>
