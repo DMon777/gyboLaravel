@@ -309,6 +309,7 @@
 
 <script src="{{asset('assets/js/validate.js')}}"></script>
 <script src="{{asset('assets/js/script.js')}}"></script>
+<script src="{{asset('assets/js/my_script.js')}}"></script>
 
 </body>
 </html>

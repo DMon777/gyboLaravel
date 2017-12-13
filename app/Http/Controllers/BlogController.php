@@ -60,14 +60,39 @@ class BlogController extends Controller
         $article = Articles::find($id);
         $title = $article->name;
       //  $comments = Comments::where('article_id','=',$id)->get();
-        $comments = $article->comments;
+      // $comments = $article->comments;
+
+        $count_comments = Comments::where('article_id','=',$id)->count();
+
+        $comments = $this->getComments($id);
+
 
         return view('article_detail_page',
             [
                 'title' => $title,
                 'article' => $article,
-                'comments' => $comments
+                'comments' => $comments,
+                'count_comments' => $count_comments,
             ]);
+    }
+
+    private function getComments($article_id,$parent_id = 0)
+    {
+        $comments = Comments::where('article_id','=',$article_id)
+                    ->where('parent_id','=',$parent_id)
+                    ->get();
+//        $comments = DB::table('comments')->select('*')->where('article_id','=',$article_id)
+//            ->where('parent_id','=',$parent_id)->get();
+
+        $map = [];
+        if(!empty($comments)) {
+            foreach ($comments as $comment) {
+                $comment->children = $this->getComments($article_id,$comment->id);
+                $map[] = $comment;
+            }
+        }
+
+        return $map;
     }
 
     public function addComment(Request $request,$id)
@@ -78,6 +103,7 @@ class BlogController extends Controller
         $model->email = $request->email;
         $model->comment = $request->message;
         $model->article_id = $id;
+        $model->parent_id  = $request->parent_id;
         $model->date = time();
         $model->save();
         return redirect()->back();

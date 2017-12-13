@@ -48,23 +48,34 @@
 
                         <!--Comments Area-->
 
-
-
-
                         <div class="comments-area">
-                            <div class="sec-title"><h4 class="title-bottom mb-30">2 Comments Found</h4></div>
-                            <div class="comment-box">
 
-                                @foreach($comments as $comment)
+                            @if(count($comments) > 0)
+                                <div class="sec-title">
+                                    <h4 class="title-bottom mb-30">
+                                         {{ $count_comments.' '.Lang::choice('comments.comment',$count_comments) }}  Found
+                                    </h4>
+                                </div>
+                            @endif
 
-                                    <div class="comment reply-comment wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                                        <div class="author-thumb"><img src="{{ asset('assets/images/resource/author-thumb-3.jpg') }}" alt=""></div>
-                                        <div class="comment-info"><strong>{{ $comment->login }}</strong> {{ $comment->created_at }}</div>
-                                        <div class="text">{{ $comment->comment }}</div>
-                                        <a href="#" class="theme-btn dark-btn reply-btn"><span class="icon flaticon-update23"></span>&ensp; Reply</a>
-                                    </div>
 
-                                @endforeach
+
+                                <div class="comment-box">
+
+                                    {{--@foreach($comments as $comment)--}}
+
+                                    {{--<div class="comment reply-comment wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">--}}
+                                    {{--<div class="author-thumb"><img src="{{ asset('assets/images/resource/author-thumb-3.jpg') }}" alt=""></div>--}}
+                                    {{--<div class="comment-info"><strong>{{ $comment->login }}</strong> {{ $comment->created_at }}</div>--}}
+                                    {{--<div class="text">{{ $comment->comment }}</div>--}}
+                                    {{--<a href="#" class="theme-btn dark-btn reply-btn"><span class="icon flaticon-update23"></span>&ensp; Reply</a>--}}
+                                    {{--</div>--}}
+
+                                    {{--@endforeach--}}
+
+
+                                    @inject('com','App\Repositories\Comments')
+                                    {{ $com->printComments($comments) }}
 
 
                                 {{--<div class="comment wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">--}}
@@ -113,7 +124,11 @@
                         <div class="comment-form wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
 
                             <div class="sec-title"><h4 class="title-bottom mb-30">Post a <strong>comment</strong></h4></div>
-
+                           <div id="answer_message">
+                               {{--<p>ответиь на комментарий  - Имя комментатора--}}
+                                   {{--<button id="reject_comment" class="btn-danger">отменить</button>--}}
+                               {{--</p>--}}
+                           </div>
                             <!--Comment Form-->
                             <form method="post" action="">
                                 <div class="row clearfix">
@@ -139,6 +154,7 @@
                                         </div>
                                     </div>
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="parent_id" id="parent_id" value = "0">
                                     <div class="form-group col-md-12 col-sm-12 col-xs-12 text-right">
                                         <button class="hvr-bounce-to-right" type="submit" name="submit-form">Add Comment</button>
                                     </div>
