@@ -47,7 +47,6 @@ class BlogController extends Controller
             ->where('articles_tags.tag_id','=',$tag[0]->id)
             ->paginate(3);
 
-
         return view('blog_page',[
             'title' => $title,
             'articles' => $articles,
@@ -105,6 +104,21 @@ class BlogController extends Controller
         $model->article_id = $id;
         $model->parent_id  = $request->parent_id;
         $model->date = time();
+
+        $rules = [
+            'login' => 'required|max:15',
+            'email' => 'required|email',
+            'message' => 'required'
+        ];
+
+        $messages = [
+            'required' => 'поле :attribute обязательно для заполнения!',
+            'email' => 'поле :attribute должно соответствовать email адресу',
+            'login.max' => 'максимально допустимое количество сиволов для поля :attribute - :max'
+        ];
+
+        $this->validate($request,$rules,$messages);
+
         $model->save();
         return redirect()->back();
 

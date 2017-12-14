@@ -17,8 +17,8 @@
                                     <a href="#"><img alt="" src="{{ asset('assets/images/blog/'.$article->image)  }}"></a>
                                     <div class="entry-meta">
                                         <ul>
-                                            <li class="entry-date"><span>28</span> <br> Dec</li>
-                                            <li class="entry-comment"><i class="icon fa fa-comment"></i> 3</li>
+                                            <li class="entry-date"><span>{{ date('j',$article->date)  }}</span> <br> {{ date('M',$article->date) }}</li>
+                                            <li class="entry-comment"><i class="icon fa fa-comment"></i> {{ \App\Comments::where('article_id','=',$article->id)->count() }}</li>
                                         </ul>
                                     </div>
                                 </figure>

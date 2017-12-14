@@ -1176,105 +1176,183 @@
                 <div class="row">
 
                     <!--Column-->
-                    <div class="col-md-6 col-lg-12">
-                        <article class="blog-post">
-                            <div class="row clearfix">
-                                <div class="col-lg-6 col-md-12">
-                                    <figure class="post-header">
-                                        <a href="#"><img alt="" src="{{asset('assets/images/blog/s1.jpg')}}"></a>
-                                        <div class="entry-meta">
-                                            <ul>
-                                                <li class="entry-date"><span>28</span> <br> Dec</li>
-                                                <li class="entry-comment"><i class="icon fa fa-comment"></i> 3</li>
-                                            </ul>
-                                        </div>
-                                    </figure>
-                                </div>
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="content">
-                                        <h3 class="title"><a href="blog-detail.html">Blog post with image</a></h3>
-                                        <ul class="post-info list-inline fs-13">
-                                            <li><span class="icon fa fa-user"></span> <a href="#">Jonathan Doe</a></li>
-                                            <li><span class="icon fa fa-tag"></span> <a href="#">Healh News</a></li>
-                                        </ul>
-                                        <div class="text">
-                                            <p>Etiam dignissim sit amet felis ac sagittis. Sed libero arcupet, pharetra et ante opos pil, elementum arc. Curabitur sagittis non justo at ultricies odio ac.</p>
-                                        </div>
-                                        <a href="#" class="read-more">Read more<i class="ml-5 fa fa-angle-double-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
 
-                    <!--Column-->
-                    <div class="col-md-6 col-lg-12">
-                        <article class="blog-post">
-                            <div class="row clearfix">
-                                <div class="col-lg-6 col-md-12">
-                                    <figure class="post-header">
-                                        <a href="#"><img alt="" src="{{asset('assets/images/blog/s2.jpg')}}"></a>
-                                        <div class="entry-meta">
-                                            <ul>
-                                                <li class="entry-date"><span>28</span> <br> Dec</li>
-                                                <li class="entry-comment"><i class="icon fa fa-comment"></i> 3</li>
-                                            </ul>
-                                        </div>
-                                    </figure>
-                                </div>
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="content">
-                                        <h3 class="title"><a href="blog-detail.html">Blog post with image</a></h3>
-                                        <ul class="post-info list-inline fs-13">
-                                            <li><span class="icon fa fa-user"></span> <a href="#">Jonathan Doe</a></li>
-                                            <li><span class="icon fa fa-tag"></span> <a href="#">Healh News</a></li>
-                                        </ul>
-                                        <div class="text">
-                                            <p>Etiam dignissim sit amet felis ac sagittis. Sed libero arcupet, pharetra et ante opos pil, elementum arc. Curabitur sagittis non justo at ultricies odio ac.</p>
-                                        </div>
-                                        <a href="#" class="read-more">Read more<i class="ml-5 fa fa-angle-double-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                    @for($i = 0;$i < count($recent_posts);$i++)
 
-                </div>
-            </div>
+                        @if($i < 2)
+                            <div class="col-md-6 col-lg-12">
+                                <article class="blog-post">
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-12">
+                                            <figure class="post-header">
+                                                <a href="#"><img alt="" src="{{asset('assets/images/blog/'.$recent_posts[$i]->image)}}"></a>
+                                                <div class="entry-meta">
+                                                    <ul>
+                                                        <li class="entry-date"><span>{{ date('j',$recent_posts[$i]->date)  }}</span> <br> {{ date('M',$recent_posts[$i]->date) }}</li>
+                                                        <li class="entry-comment"><i class="icon fa fa-comment"></i> {{ \App\Comments::where('article_id','=',$recent_posts[$i]->id)->count() }}</li>
+                                                    </ul>
+                                                </div>
+                                            </figure>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="content">
+                                                <h3 class="title"><a href="blog-detail.html">{{ $recent_posts[$i]->name }}</a></h3>
+                                                <ul class="post-info list-inline fs-13">
+                                                    <li><span class="icon fa fa-user"></span> <a href="{{ route('trainer',['id' => $recent_posts[$i]->author->id]) }}">{{ $recent_posts[$i]->author->name }}</a></li>
+                                                    <li><span class="icon fa fa-tag"></span> <a href="{{ route('category',['id' => $recent_posts[$i]->category->id]) }}">{{ $recent_posts[$i]->category->name }}</a></li>
+                                                </ul>
+                                                <div class="text">
+                                                    <p>{{ $recent_posts[$i]->intro}}</p>
+                                                </div>
+                                                <a href="{{ route('article',['id' => $recent_posts[$i]->id]) }}" class="read-more">Read more<i class="ml-5 fa fa-angle-double-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+
+                            @else
+
+
+                            </div>
+                        </div>
 
             <div class="col-md-4">
 
-                <!--Column-->
-                <article class="blog-post post-tale">
-                    <div class="row clearfix">
-                        <div class="col-md-12">
-                            <figure class="post-header">
-                                <a href="#"><img alt="" src="{{asset('assets/images/blog/b1.jpg')}}"></a>
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li class="entry-date"><span>28</span> <br> Dec</li>
-                                        <li class="entry-comment"><i class="icon fa fa-comment"></i> 3</li>
-                                    </ul>
-                                </div>
-                            </figure>
+                                <article class="blog-post">
+                                    <div class="row clearfix">
+                                        <div class="col-md-12">
+                                            <figure class="post-header">
+                                                <a href="#"><img alt="" src="{{asset('assets/images/blog/'.$recent_posts[$i]->image)}}"></a>
+                                                <div class="entry-meta">
+                                                    <ul>
+                                                        <ul>
+                                                            <li class="entry-date"><span>{{ date('j',$recent_posts[$i]->date)  }}</span> <br> {{ date('M',$recent_posts[$i]->date) }}</li>
+                                                            <li class="entry-comment"><i class="icon fa fa-comment"></i> {{ \App\Comments::where('article_id','=',$recent_posts[$i]->id)->count() }}</li>
+                                                        </ul>
+                                                    </ul>
+                                                </div>
+                                            </figure>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="content">
+                                                <h3 class="title"><a href="blog-detail.html">{{ $recent_posts[$i]->name }}</a></h3>
+                                                <ul class="post-info list-inline fs-13">
+                                                    <li><span class="icon fa fa-user"></span> <a href="{{ route('trainer',['id' => $recent_posts[$i]->author->id]) }}">{{ $recent_posts[$i]->author->name }}</a></li>
+                                                    <li><span class="icon fa fa-tag"></span> <a href="{{ route('category',['id' => $recent_posts[$i]->category->id]) }}">{{ $recent_posts[$i]->category->name }}</a></li>
+                                                </ul>
+                                                <div class="text">
+                                                    <p>{{ $recent_posts[$i]->intro}}</p>
+                                                </div>
+                                                <a href="{{ route('article',['id' => $recent_posts[$i]->id]) }}" class="read-more">Read more<i class="ml-5 fa fa-angle-double-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
                         </div>
-                        <div class="col-md-12">
-                            <div class="content">
-                                <h3 class="title"><a href="blog-detail.html">Blog post with image</a></h3>
-                                <ul class="post-info list-inline fs-13">
-                                    <li><span class="icon fa fa-user"></span> <a href="#">Jonathan Doe</a></li>
-                                    <li><span class="icon fa fa-tag"></span> <a href="#">Healh News</a></li>
-                                </ul>
-                                <div class="text">
-                                    <p>Etiam dignissim sit amet felis ac sagittis. Libero arcu, pharetra et ante in, elementum  ar.  Lorem ipsum dolor sit amet, consectetur elit. Aut sabr laudantium aperiam, consectetur.</p>
-                                </div>
-                                <a href="#" class="read-more">Read more<i class="ml-5 fa fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+                        @endif
 
-            </div>
+                    @endfor
+
+                    {{--<div class="col-md-6 col-lg-12">--}}
+                        {{--<article class="blog-post">--}}
+                            {{--<div class="row clearfix">--}}
+                                {{--<div class="col-lg-6 col-md-12">--}}
+                                    {{--<figure class="post-header">--}}
+                                        {{--<a href="#"><img alt="" src="{{asset('assets/images/blog/s1.jpg')}}"></a>--}}
+                                        {{--<div class="entry-meta">--}}
+                                            {{--<ul>--}}
+                                                {{--<li class="entry-date"><span>28</span> <br> Dec</li>--}}
+                                                {{--<li class="entry-comment"><i class="icon fa fa-comment"></i> 3</li>--}}
+                                            {{--</ul>--}}
+                                        {{--</div>--}}
+                                    {{--</figure>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-lg-6 col-md-12">--}}
+                                    {{--<div class="content">--}}
+                                        {{--<h3 class="title"><a href="blog-detail.html">Blog post with image</a></h3>--}}
+                                        {{--<ul class="post-info list-inline fs-13">--}}
+                                            {{--<li><span class="icon fa fa-user"></span> <a href="#">Jonathan Doe</a></li>--}}
+                                            {{--<li><span class="icon fa fa-tag"></span> <a href="#">Healh News</a></li>--}}
+                                        {{--</ul>--}}
+                                        {{--<div class="text">--}}
+                                            {{--<p>Etiam dignissim sit amet felis ac sagittis. Sed libero arcupet, pharetra et ante opos pil, elementum arc. Curabitur sagittis non justo at ultricies odio ac.</p>--}}
+                                        {{--</div>--}}
+                                        {{--<a href="#" class="read-more">Read more<i class="ml-5 fa fa-angle-double-right"></i></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</article>--}}
+                    {{--</div>--}}
+
+                    {{--<!--Column-->--}}
+                    {{--<div class="col-md-6 col-lg-12">--}}
+                        {{--<article class="blog-post">--}}
+                            {{--<div class="row clearfix">--}}
+                                {{--<div class="col-lg-6 col-md-12">--}}
+                                    {{--<figure class="post-header">--}}
+                                        {{--<a href="#"><img alt="" src="{{asset('assets/images/blog/s2.jpg')}}"></a>--}}
+                                        {{--<div class="entry-meta">--}}
+                                            {{--<ul>--}}
+                                                {{--<li class="entry-date"><span>28</span> <br> Dec</li>--}}
+                                                {{--<li class="entry-comment"><i class="icon fa fa-comment"></i> 3</li>--}}
+                                            {{--</ul>--}}
+                                        {{--</div>--}}
+                                    {{--</figure>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-lg-6 col-md-12">--}}
+                                    {{--<div class="content">--}}
+                                        {{--<h3 class="title"><a href="blog-detail.html">Blog post with image</a></h3>--}}
+                                        {{--<ul class="post-info list-inline fs-13">--}}
+                                            {{--<li><span class="icon fa fa-user"></span> <a href="#">Jonathan Doe</a></li>--}}
+                                            {{--<li><span class="icon fa fa-tag"></span> <a href="#">Healh News</a></li>--}}
+                                        {{--</ul>--}}
+                                        {{--<div class="text">--}}
+                                            {{--<p>Etiam dignissim sit amet felis ac sagittis. Sed libero arcupet, pharetra et ante opos pil, elementum arc. Curabitur sagittis non justo at ultricies odio ac.</p>--}}
+                                        {{--</div>--}}
+                                        {{--<a href="#" class="read-more">Read more<i class="ml-5 fa fa-angle-double-right"></i></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</article>--}}
+                    {{--</div>--}}
+
+                {{--</div>--}}
+            {{--</div>--}}
+
+            {{--<div class="col-md-4">--}}
+
+                {{--<!--Column-->--}}
+                {{--<article class="blog-post post-tale">--}}
+                    {{--<div class="row clearfix">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<figure class="post-header">--}}
+                                {{--<a href="#"><img alt="" src="{{asset('assets/images/blog/b1.jpg')}}"></a>--}}
+                                {{--<div class="entry-meta">--}}
+                                    {{--<ul>--}}
+                                        {{--<li class="entry-date"><span>28</span> <br> Dec</li>--}}
+                                        {{--<li class="entry-comment"><i class="icon fa fa-comment"></i> 3</li>--}}
+                                    {{--</ul>--}}
+                                {{--</div>--}}
+                            {{--</figure>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="content">--}}
+                                {{--<h3 class="title"><a href="blog-detail.html">Blog post with image</a></h3>--}}
+                                {{--<ul class="post-info list-inline fs-13">--}}
+                                    {{--<li><span class="icon fa fa-user"></span> <a href="#">Jonathan Doe</a></li>--}}
+                                    {{--<li><span class="icon fa fa-tag"></span> <a href="#">Healh News</a></li>--}}
+                                {{--</ul>--}}
+                                {{--<div class="text">--}}
+                                    {{--<p>Etiam dignissim sit amet felis ac sagittis. Libero arcu, pharetra et ante in, elementum  ar.  Lorem ipsum dolor sit amet, consectetur elit. Aut sabr laudantium aperiam, consectetur.</p>--}}
+                                {{--</div>--}}
+                                {{--<a href="#" class="read-more">Read more<i class="ml-5 fa fa-angle-double-right"></i></a>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</article>--}}
+
+            {{--</div>--}}
 
         </div>
     </div>

@@ -10,7 +10,7 @@ $(document).ready(function () {
         $('#answer_message').append(str);
         $('#your-name').focus();
         $('#parent_id').val(comment_id);
-    })
+    });
 
 
     $("#answer_message").bind('click','#reject_answer',function(){
@@ -19,4 +19,4 @@ $(document).ready(function () {
         $('#parent_id').val('0');
     });
 
-})
+});
