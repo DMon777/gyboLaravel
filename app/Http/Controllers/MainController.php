@@ -9,6 +9,8 @@ use App\UpcomingCourcses;
 use App\Pacages;
 use App\Articles;
 
+use PHPMailer;
+
 class MainController extends Controller
 {
 
@@ -27,7 +29,6 @@ class MainController extends Controller
        }
 
 
-
        return view('main_page',
        [
           'title' => $title,
@@ -37,6 +38,32 @@ class MainController extends Controller
           'pacages' => $pacages,
            'recent_posts' => $recent_posts
        ]);
+    }
+
+    public function sendMail(Request $request)
+    {
+        $data = $request->all();
+        $admin_email = 'd.mon110kg@gmail.com';
+
+        $mail = new PHPMailer();
+        $mail->CharSet = 'utf-8';
+        $mail->setFrom($data['email'], $data['name']);
+        $mail->addAddress($admin_email, 'Dima Bessalov');
+        $mail->addReplyTo($data['email'], 'Information');
+
+        $mail->isHTML(true);
+
+        $mail->Subject = 'Тема моего письма';
+        $mail->Body    = view('layouts.email',['message' => $data['message']])->render();
+        $mail->AltBody = $data['message']; // альтернативное тело письма без html тегов, на всякий случай.
+
+
+        if($mail->send()) {
+            return redirect(route('home'))->with('email_status','письмо было отправлено!');
+        } else {
+            return redirect(route('home'))->with('email_status','ошибка при отправлении письма!');
+        }
+
     }
 
 }

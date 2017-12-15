@@ -35,15 +35,20 @@
                 <div class="col-md-6">
                     <!-- Appointment Form -->
                     <div class="comment-form appoinment-form wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
-                        <h3 class="title-bottom fs-20 pb-5 mb-20">Make an Appointment</h3>
+                        <h3 class="title-bottom fs-20 pb-5 mb-20">Make an Appointment
+                            @if(Session::has('email_status'))
+                                {{ Session::get('email_status') }}
+                            @endif
+
+                        </h3>
                         <!--Comment Form-->
-                        <form method="post" action="blog.html">
+                        <form method="post" action="">
                             <div class="row clearfix">
                                 <div class="form-group col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group-inner">
                                         <div class="icon-box"><label for="your-name"><span class="icon fa fa-user"></span></label></div>
                                         <div class="field-outer">
-                                            <input type="text" name="username" id="your-name" placeholder="Your Name">
+                                            <input type="text" name="name" id="your-name" placeholder="Your Name">
                                         </div>
                                     </div>
                                 </div>
@@ -51,6 +56,7 @@
                                     <div class="form-group-inner">
                                         <div class="icon-box"><label for="your-email"><span class="icon fa fa-envelope"></span></label></div>
                                         <div class="field-outer">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input type="email" name="email" id="your-email" placeholder="Email">
                                         </div>
                                     </div>
@@ -71,7 +77,7 @@
                                                 <select class="select-input" name="category">
                                                     <option value="" selected="selected">Select Category</option>
                                                     @foreach($trainer_classes as $class)
-                                                        <option value="{{ $class->id  }}">
+                                                        <option value="{{ $class->name  }}">
                                                             {{ $class->name }}
                                                         </option>
                                                     @endforeach
@@ -91,6 +97,7 @@
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>

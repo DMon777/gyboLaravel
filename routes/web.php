@@ -12,9 +12,11 @@
 */
 
 Route::get('/','MainController@actionMain')->name('home');
+Route::post('/','MainController@sendMail');
 
 Route::get('/trainers','TrainersController@actionTrainers')->name('trainers');
 Route::get('/trainer/{id}','TrainersController@actionTrainer')->name('trainer');
+Route::post('/trainer/{id}','TrainersController@sendMailToTrainer');
 
 Route::get('/classes','ClassesController@actionClasses')->name('classes');
 Route::get('/class/{id}','ClassesController@actionClass')->name('class');

@@ -264,12 +264,17 @@
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="footer-widget contact-widget">
                             <div class="widget-title"><h3>Contact Form</h3></div>
-                            <form action="inc/sendemail.php" class="validated-contact-form contact-form" id="footer-cf">
+                            <form action="" class=" contact-form" method="post" id="footer-cf">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="text" name="name"  placeholder="Full Name">
                                 <input type="text" name="email" placeholder="Email Address" >
                                 <textarea name="message" placeholder="Your Message"></textarea>
                                 <button type="submit">Send</button>
-                                <div class="result"></div><!-- /.result -->
+                                <div class="result">
+                                    @if(Session::has('email_status'))
+                                        {{ Session::get('email_status') }}
+                                     @endif
+                                </div><!-- /.result -->
                             </form>
                         </div>
                     </div>

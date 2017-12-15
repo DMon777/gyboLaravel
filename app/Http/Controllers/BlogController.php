@@ -11,9 +11,23 @@ use DB;
 
 class BlogController extends Controller
 {
-    public function actionBlog()
+    public function actionBlog(Request $request)
     {
         $title = "Blog";
+        if(!empty($request->search)){
+
+            $search_data = Articles::where('name','like',"%$request->search%")
+                ->where('text','like',"%$request->search%")
+                ->get();
+
+//            if(!empty($search_data[0])) {
+//               dump($search_data);
+//            }
+//            else echo "ничего не найдено!!";
+
+            $title = 'результаты поиска';
+            return view('search_page',['title' => $title,'search_data' => $search_data]);
+        }
 
       //  $articles = DB::table('articles')->paginate(3);
         $articles = Articles::paginate(3);

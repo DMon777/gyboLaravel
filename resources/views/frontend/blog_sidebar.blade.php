@@ -4,7 +4,7 @@
         <!-- Search Form -->
         <div class="widget search-form">
 
-            <form method="post" action="blog.html">
+            <form method="get" action="">
                 <div class="form-group">
                     <input type="search" name="search" value="" placeholder="search for something">
                     <button type="submit" name="submit"><span class="fa fa-search"></span></button>
