@@ -17,8 +17,16 @@
                                     <div class="date pt-20"><span class="day icon flaticon-silhouette-3"></span></div>
                                     <h3 class="title fs-24"><a href="blog-detail.html">{{ $class->name  }}</a></h3>
                                     <ul class="post-info">
-                                        <li><span class="icon fa fa-user"></span> <a href="#">Jonathan Doe</a></li>
-                                        <li><span class="icon fa fa-calendar-o"></span> <a href="#">7.00 - 10:00</a></li>
+
+                                      @foreach($trainers as $trainer)
+                                            <li><span class="icon fa fa-user"></span> <a href="{{route('trainer',['id' => $trainer->id])}}"> {{ $trainer->name }} </a></li>
+                                      @endforeach
+                                        <br>
+                                        @foreach($schedules as  $schedule)
+                                              <li><span class="icon fa fa-calendar-o"></span> {{ $schedule->day }} : {{ $schedule->time }}</li>
+                                        @endforeach
+                                        {{--<li><span class="icon fa fa-user"></span> <a href="#"></a></li>--}}
+                                        {{--<li><span class="icon fa fa-calendar-o"></span> <a href="#">7.00 - 10:00</a></li>--}}
                                     </ul>
                                 </div>
                                 <div class="post-desc">
@@ -28,14 +36,19 @@
                         </article>
 
                         <!--About Author-->
-                        <div class="about-author mt-60 wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
-                            <div class="author-desc">
-                                <div class="author-thumb"><img src="{{ asset('assets/images/resource/author-thumb.jpg') }}" alt=""></div>
-                                <div class="author-info fw-b lh-20 mb-0">Jonathan Doe</div>
-                                <p class="color-theme fs-12 fw-600 mb-0"><em>Expert Trainer</em></p>
-                                <div class="text fs-13 lh-20">“Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio.”</div>
+
+                        @foreach($trainers as $trainer)
+                            <div class="about-author mt-60 wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
+                                <div class="author-desc">
+                                    <div class="author-thumb"><img src="{{ asset('assets/images/team/'.$trainer->img) }}" alt=""></div>
+                                    <div class="author-info fw-b lh-20 mb-0">{{ $trainer->name }}</div>
+                                    <p class="color-theme fs-12 fw-600 mb-0"><em>{{ $trainer->specialization }}</em></p>
+                                    <div class="text fs-13 lh-20">“{{ $trainer->description }}”</div>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
+
+
 
                         <!-- Comment Form -->
                         <div class="comment-form wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">

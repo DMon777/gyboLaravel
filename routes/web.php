@@ -36,6 +36,13 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'],function (){
 
     Route::get('/','AdminController@action')->name('admin');
 
+    Route::get('/classes','ClassesController@adminActionClasses')->name('admin_classes');
+    Route::get('/update_class/{id}','ClassesController@viewUpdateClass')->name('update_class');
+    Route::post('/update_class/{id}','ClassesController@updateClass');
+
+    Route::get('/add_class','ClassesController@viewAddClass')->name('add_class');
+    Route::post('/add_class','ClassesController@addClass');
+
 
 });
 

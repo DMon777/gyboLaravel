@@ -5,7 +5,6 @@
             <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
                 <!--Default Section-->
                 <section class="default-section blog-section pt-0 pb-0">
-
                         @forelse($search_data as $article)
 
                             <article class="blog-post hvr-float-shadow">
@@ -29,12 +28,10 @@
                             @empty
                             <p> по вашему запросу ничего не найдено!!!</p>
                         @endforelse
-
                 <!--Pagination-->
                     <div class="pager-outer">
                     </div>
                 </section>
-
             </div>
             <!--Content Side-->
             @inject('sidebar','App\Repositories\SidebarRep')
