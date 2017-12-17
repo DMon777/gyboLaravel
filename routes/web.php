@@ -43,6 +43,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'],function (){
     Route::get('/add_class','ClassesController@viewAddClass')->name('add_class');
     Route::post('/add_class','ClassesController@addClass');
 
+    Route::get('/deleteclass/{id}','ClassesController@deleteClass')->name('delete_class');
+
 
 });
 

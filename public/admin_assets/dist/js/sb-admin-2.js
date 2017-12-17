@@ -44,4 +44,14 @@ $(function() {
             break;
         }
     }
+
+    $(".delete_class").on('click',function (e) {
+        e.preventDefault();
+        var href = $(this).attr('href');
+        $("#myModal").modal('show');
+
+        $('.confirm_class_delete').attr('href',href);
+    })
+
+
 });

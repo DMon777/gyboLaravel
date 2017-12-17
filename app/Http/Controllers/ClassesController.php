@@ -133,4 +133,15 @@ class ClassesController extends Controller
 
     }
 
+    public function deleteClass($id)
+    {
+        $model = Classes::find($id);
+        $class_name = $model->name;
+        $model->trainers()->detach($model->trainers);
+        if($model->delete()){
+            return redirect()->back()->with('message','Класс '. $class_name .' был удален!!!');
+        }
+
+    }
+
 }
