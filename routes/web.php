@@ -30,3 +30,16 @@ Route::post('/article/{id}','BlogController@addComment');
 Route::get('/category/{id}','BlogController@actionArticlesByCat')->name('category');
 Route::get('/tags/{name}','BlogController@actionArticlesByTagName')->name('tags');
 Route::get('/contact','ContactController@actionContact')->name('contact');
+
+
+Route::group(['prefix' => 'admin','middleware' => 'auth'],function (){
+
+    Route::get('/','AdminController@action')->name('admin');
+
+
+});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
