@@ -168,6 +168,22 @@
                         <!-- /.nav-second-level -->
                     </li>
 
+
+                    <li>
+                        <a href="#"><i class="fa  fa-list-alt   fa-fw"></i> Тренера <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{route('view_trainers')}}">просмотреть </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add_trainer') }}">добавить </a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+
+
+
                     {{-- end my navigation --}}
                     <li>
                         <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>

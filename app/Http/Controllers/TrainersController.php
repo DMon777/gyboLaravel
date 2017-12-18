@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes;
 use Illuminate\Http\Request;
 use App\Trainers;
 use PHPMailer;
@@ -42,8 +43,6 @@ class TrainersController extends Controller
 
     public function sendMailToTrainer(Request $request,$id)
     {
-
-
         $data = $request->all();
         $admin_email = 'd.mon110kg@gmail.com';
 
@@ -65,6 +64,65 @@ class TrainersController extends Controller
         } else {
             return redirect(route('trainer',['id' => $id]))->with('email_status','ошибка при отправлении письма!');
         }
+    }
+
+    public function actionAdminTrainers()
+    {
+        $trainers = Trainers::all();
+        return view('admin.pages.trainers',['trainers' => $trainers]);
+    }
+
+    public function viewUpdateTrainer($id)
+    {
+        $trainer = Trainers::find($id);
+        $all_classes = Classes::all();
+        $classes = $trainer->classes;
+
+
+        return view('admin.pages.update_trainer',
+            [
+                'trainer' => $trainer,
+                'all_classes' => $all_classes,
+                'classes' => $classes,
+            ]);
+    }
+
+    public function updateTrainer(Request $request,$id)
+    {
+
+        $model = Trainers::find($id);
+
+        $model->name = $request->name;
+        $model->description = $request->description;
+        $model->specialization = $request->specialization;
+        $model->phone = $request->phone;
+        $model->email = $request->email;
+
+
+        if($request->hasFile('img')) {
+            $file = $request->file('img');
+
+            $img_name = $file->getClientOriginalName();
+
+            $file->move(public_path().'/assets/images/team/',$img_name);
+            $model->img = $img_name;
+        } else {
+            $model->img = $request->old_img;
+        }
+
+        $model->classes()->detach($model->classes);
+        $model->classes()->attach($request->classes);
+
+        if($model->save()) {
+            return redirect()->back()->with('message','данные обновлены!');
+        } else {
+            return redirect()->back()->with('message','при обновлении произошла ошибка!');
+        }
+    }
+
+    public function addTrainer()
+    {
+
     }
 
 }

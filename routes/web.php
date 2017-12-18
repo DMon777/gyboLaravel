@@ -55,6 +55,18 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'],function (){
 
     });
 
+    Route::group(['prefix' => 'trainers'],function () {
+
+        Route::get('/view',"TrainersController@actionAdminTrainers")->name('view_trainers');
+//        Route::post('/view/{id}',"TrainersController@updateTrainer");
+        Route::get('/add',"TrainersController@actionAddTrainer")->name('add_trainer');
+        Route::post('/add',"TrainersController@addTrainer");
+        Route::get('/update/{id}','TrainersController@viewUpdateTrainer')->name('update_trainer');
+        Route::post('/update/{id}','TrainersController@updateTrainer')->name('update_trainer');
+        Route::get('delete/{id}',"TrainersController@deleteTrainer")->name('delete_trainer');
+
+    });
+
 
 });
 
