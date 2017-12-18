@@ -12,7 +12,6 @@
                                 <li class="class-row">
                                     <div class="class-day"> {{ $key }} </div>
                                     @foreach($value as $item)
-
                                         @if($item->flag == 1)
                                             <!--Single Class Start-->
                                                 <div class="single-class">
@@ -44,11 +43,8 @@
                                                     </div>
                                                 </div>
                                                 <!--Single Class End-->
-
-
                                             @endif
                                     @endforeach
-
                                 </li>
                         @endforeach
 

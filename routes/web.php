@@ -45,6 +45,16 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'],function (){
 
     Route::get('/deleteclass/{id}','ClassesController@deleteClass')->name('delete_class');
 
+    Route::group(['prefix' => 'schedules'],function () {
+
+        Route::get('/view',"TimeTableController@actionAdminTimeTable")->name('view_schedules');
+        Route::post('/view',"TimeTableController@updateAdminTimeTable");
+        Route::get('/add',"TimeTableController@actionAddSchedule")->name('add_schedule');
+        Route::post('/add',"TimeTableController@addSchedule");
+        Route::get('delete/{id}',"TimeTableController@deleteSchedule")->name('delete_schedule');
+
+    });
+
 
 });
 

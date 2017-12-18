@@ -53,5 +53,13 @@ $(function() {
         $('.confirm_class_delete').attr('href',href);
     })
 
+    $(".delete_schedule").on('click',function (e) {
+        e.preventDefault();
+        var href = $(this).attr('href');
+        $("#myModal").modal('show');
+
+        $('.confirm_class_delete').attr('href',href);
+    })
+
 
 });

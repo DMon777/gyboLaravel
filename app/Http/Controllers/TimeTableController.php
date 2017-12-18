@@ -26,6 +26,89 @@ class TimeTableController extends Controller
     public function actionTimeTable()
     {
         $title = 'Time Table';
+
+        $schedules = $this->getSchedules();
+
+//        foreach ($tuesday_schedule as $item) {
+//            echo $item->time.'<br>';
+//            $class = $item->classes;
+//            echo $class->name.'<br>';
+//            echo $class->img;
+//            echo "<hr>";
+//        }
+
+        return view('timetable_page',['title' => $title,
+            'schedules' => $schedules
+            ]);
+    }
+
+    public function actionAdminTimeTable ()
+    {
+        $schedules = $this->getSchedules();
+        $classes = Classes::all();
+
+        return view('admin.pages.schedules',['schedules' => $schedules,'classes' => $classes]);
+    }
+
+    public function updateAdminTimeTable (Request $request)
+    {
+        $day = $request->day;
+
+
+        $schedules = Schedule::where('day','=',$day)->orderBy('order')->get();
+
+        $count = 0;
+        foreach ($schedules as $schedule) {
+
+            $schedule->time = $request->time[$count];
+            $schedule->order = $request->order[$count];
+            $schedule->flag = $request->flag[$count];
+            $schedule->class_id = $request->class[$count];
+            if(!$schedule->save()) {
+                return redirect()->back()->with('message','произошла ошибка!!!');
+            }
+            $count++;
+        }
+        return redirect()->back()->with('message','Графики обновлены');
+    }
+
+    public function actionAddSchedule ()
+    {
+        $days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
+        $classes = Classes::all();
+
+        return view('admin.pages.add_schedule',['days' => $days,'classes' => $classes]);
+    }
+
+    public function addSchedule (Request $request)
+    {
+        $model = new Schedule();
+        $model->day = $request->day;
+        $model->time = $request->time;
+        $model->order = $request->order;
+        $model->class_id = $request->class;
+
+        if($model->save()) {
+            return redirect()->back()->with('message','График сохранен!');
+        } else {
+            return redirect()->back()->with('message','при сохранеии произошла ошибка!');
+        }
+
+    }
+
+
+    public function deleteSchedule ($id)
+    {
+        $model = Schedule::find($id);
+        if($model->delete()) {
+            return redirect()->back()->with('message','График удален');
+        } else {
+            return redirect()->back()->with('message'," при удалении произошла ошибка!!!");
+        }
+    }
+
+
+    private function getSchedules() {
         $schedules = [];
 
         $sunday_schedule = Schedule::where('day','=','SUNDAY')
@@ -56,19 +139,7 @@ class TimeTableController extends Controller
             ->orderBy('order')->get();
         $schedules['SATURDAY'] = $saturday_schedule;
 
-
-//        foreach ($tuesday_schedule as $item) {
-//            echo $item->time.'<br>';
-//            $class = $item->classes;
-//            echo $class->name.'<br>';
-//            echo $class->img;
-//            echo "<hr>";
-//        }
-
-        return view('timetable_page',['title' => $title,
-            'schedules' => $schedules
-            ]);
+        return $schedules;
     }
-
 
 }
