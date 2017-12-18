@@ -120,8 +120,64 @@ class TrainersController extends Controller
         }
     }
 
-    public function addTrainer()
+    public function actionAddTrainer()
     {
+        $all_classes = Classes::all();
+        return view('admin.pages.add_trainer',['all_classes' => $all_classes]);
+    }
+
+    public function addTrainer(Request $request)
+    {
+        $model = new Trainers();
+
+        $model->name = $request->name;
+        $model->description = $request->description;
+        $model->specialization = $request->specialization;
+        $model->phone = $request->phone;
+        $model->email = $request->email;
+
+        if($request->hasFile('img')) {
+            $file = $request->file('img');
+
+            $size = $file->getSize();
+            if($size < 11000){
+                $img_name = $file->getClientOriginalName();
+
+                $file->move(public_path().'/assets/images/team/',$img_name);
+                $model->img = $img_name;
+            }
+
+        }
+
+        $rules = [
+            'name' => 'required|max:20',
+            'email' => 'required|email',
+            'description' => 'required',
+            'phone' => 'required',
+            'specialization' => 'required',
+            'img' => 'required|image|max:110000'
+        ];
+
+        $messages = [
+            'required' => 'поле :attribute обязательно для заполнения!',
+            'email' => 'поле :attribute должно соответствовать email адресу',
+            'name.max' => 'максимально допустимое количество сиволов для поля :attribute - :max',
+            'image' => 'загружаемый файл должен быть изображением',
+            'img.max' => 'превышен допустимый размер загружаемого файла'
+
+        ];
+
+        $this->validate($request,$rules,$messages);
+
+
+
+
+        if($model->save()) {
+            $model->classes()->attach($request->classes);
+            return redirect()->back()->with('message','данные обновлены!');
+        } else {
+            return redirect()->back()->with('message','при обновлении произошла ошибка!');
+        }
 
     }
 

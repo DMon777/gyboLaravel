@@ -1,7 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Димон
- * Date: 18.12.2017
- * Time: 23:25
- */
+@extends('layouts.admin_layout')
+
+@section('content')
+    @include('admin.blocks.add_trainer')
+@endsection
