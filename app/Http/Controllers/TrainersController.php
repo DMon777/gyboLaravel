@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Trainers;
 use PHPMailer;
 use App\Roles;
+use Gate;
 
 class TrainersController extends Controller
 {
@@ -79,6 +80,11 @@ class TrainersController extends Controller
 
     public function viewUpdateTrainer($id)
     {
+
+        if(Gate::denies('update-trainer',$id)){
+            return redirect()->back()->with('message','Вы не можете редактировать других пользователей!');
+        }
+
         $trainer = Trainers::find($id);
         $all_classes = Classes::all();
         $classes = $trainer->classes;
@@ -174,9 +180,6 @@ class TrainersController extends Controller
 
         $this->validate($request,$rules,$messages);
 
-
-
-
         if($model->save()) {
             $model->classes()->attach($request->classes);
             return redirect()->back()->with('message','данные обновлены!');
@@ -185,5 +188,22 @@ class TrainersController extends Controller
         }
 
     }
+
+    public function deleteTrainer ($id) {
+
+        if(Gate::denies('delete-trainer')){
+            return redirect()->back()->with('message','У вас недостаточно прав для удаления тренеров');
+        }
+
+        $model = Trainers::find($id);
+        $trainer_name = $model->name;
+        $model->classes()->detach($model->classes);
+        $model->roles()->detach($model->roles);
+        if($model->delete()){
+            return redirect()->back()->with('message','Тренер '. $trainer_name .' был удален!!!');
+        }
+
+    }
+
 
 }

@@ -60,7 +60,7 @@
                             <h4 class="modal-title">Удаление!!!</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Вы действительно хотите удалить этот класс;</p>
+                            <p>Вы действительно хотите удалить этого тренера?;</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Нет</button>

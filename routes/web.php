@@ -62,7 +62,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'],function (){
         Route::get('/add',"TrainersController@actionAddTrainer")->name('add_trainer');
         Route::post('/add',"TrainersController@addTrainer");
         Route::get('/update/{id}','TrainersController@viewUpdateTrainer')->name('update_trainer');
-        Route::post('/update/{id}','TrainersController@updateTrainer')->name('update_trainer');
+        Route::post('/update/{id}','TrainersController@updateTrainer');
         Route::get('delete/{id}',"TrainersController@deleteTrainer")->name('delete_trainer');
 
     });

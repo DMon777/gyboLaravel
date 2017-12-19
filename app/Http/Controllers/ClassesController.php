@@ -6,6 +6,7 @@ use App\Http\Requests\classValidator;
 use App\Trainers;
 use Illuminate\Http\Request;
 use App\Classes;
+use Gate;
 
 class ClassesController extends Controller
 {
@@ -47,7 +48,13 @@ class ClassesController extends Controller
 
     public function viewUpdateClass($id)
     {
-       $class = Classes::find($id);
+
+        if(Gate::denies('update-class')){
+            return redirect()->back()->with('message','У вас недостаточно прав для просмотра данной страницы');
+        }
+
+
+        $class = Classes::find($id);
 
        $trainers = $class->trainers;
        $all_trainers = Trainers::all();
@@ -135,6 +142,11 @@ class ClassesController extends Controller
 
     public function deleteClass($id)
     {
+
+        if(Gate::denies('delete-class')){
+            return redirect()->back()->with('message','У вас недостаточно прав для удаления класс');
+        }
+
         $model = Classes::find($id);
         $class_name = $model->name;
         $model->trainers()->detach($model->trainers);
