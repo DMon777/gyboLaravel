@@ -6,13 +6,18 @@ use App\Classes;
 use Illuminate\Http\Request;
 use App\Trainers;
 use PHPMailer;
+use App\Roles;
 
 class TrainersController extends Controller
 {
 
     public function actionTrainers()
     {
-        $trainers = Trainers::all();
+        //$trainers = Trainers::all();
+
+        $role = Roles::where('name','=','Trainer')->first();
+        $trainers = $role->trainers;
+
 
         $title = 'Our Trainers';
         return view('trainers_page',['title' => $title,'trainers' => $trainers]);
