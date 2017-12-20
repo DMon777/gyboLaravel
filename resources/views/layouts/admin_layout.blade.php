@@ -20,7 +20,7 @@
     <!-- MetisMenu CSS -->
     <link href="{{ asset('admin_assets/vendor/metisMenu/metisMenu.min.css')  }} }}" rel="stylesheet">
 
-
+    <script src="{{ asset('admin_assets/dist/js/ckeditor/ckeditor.js') }}"></script>
     <!-- Custom Fonts -->
     <link href="{{ asset('admin_assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
@@ -182,6 +182,30 @@
                         <!-- /.nav-second-level -->
                     </li>
 
+                    <li>
+                        <a href="#"><i class="fa  fa-list-alt   fa-fw"></i> Блог <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{route('admin_articles')}}">статьи </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add_article') }}">добавить статью </a>
+                            </li>
+                            {{--<li>--}}
+                                {{--<a href="{{ route('categories') }}">категории </a>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                                {{--<a href="{{ route('add_category') }}">добавить категорию </a>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                                {{--<a href="{{ route('tags') }}">Теги</a>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                                {{--<a href="{{ route('add_tag') }}">добавить тег </a>--}}
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
 
 
                     {{-- end my navigation --}}
@@ -297,6 +321,7 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="{{ asset('admin_assets/dist/js/sb-admin-2.js') }}"></script>
+
 
 </body>
 

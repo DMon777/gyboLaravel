@@ -138,5 +138,118 @@ class BlogController extends Controller
 
     }
 
+    public function viewAdminArticles ()
+    {
+        $articles = Articles::paginate(3);
+
+        return view('admin.pages.articles',['articles' => $articles]);
+    }
+
+    public function viewUpdateArticle($id)
+    {
+        $categories = Categories::all();
+        $article = Articles::find($id);
+
+        $tags = Tags::all();
+        return view ('admin.pages.article',[
+            'article' => $article,
+            'categories' => $categories,
+            'tags' => $tags,
+        ]);
+    }
+
+    public function updateArticle (Request $request,$id)
+    {
+
+        $model = Articles::find($id);
+
+        $model->name = $request->name;
+        $model->intro = $request->intro;
+        $model->text = $request->text;
+        $model->image = $request->img;
+        $model->category_id = $request->category;
+
+
+        if($request->hasFile('img')) {
+            $file = $request->file('img');
+
+            $img_name = $file->getClientOriginalName();
+
+            $file->move(public_path().'/assets/images/blog/',$img_name);
+            $model->image = $img_name;
+        } else {
+            $model->image = $request->old_img;
+        }
+
+        $model->tags()->detach($model->tags);
+        $model->tags()->attach($request->tags);
+
+        if($model->save()) {
+            return redirect()->back()->with('message','данные обновлены!');
+        } else {
+            return redirect()->back()->with('message','при обновлении произошла ошибка!');
+        }
+
+    }
+
+    public function viewAddArticle ()
+    {
+        $categories = Categories::all();
+        $tags = Tags::all();
+
+        return view ('admin.pages.add_article',[
+            'categories' => $categories,
+            'tags' => $tags
+        ]);
+    }
+
+    public function addArticle(Request $request)
+    {
+        $author_id = $request->user()->id;
+        $model = new Articles();
+
+        $model->name = $request->name;
+        $model->intro = $request->intro;
+        $model->text = $request->text;
+
+        $model->category_id = $request->category;
+        $model->author_id = $author_id;
+
+
+        if($request->hasFile('img')) {
+            $file = $request->file('img');
+
+            $img_name = $file->getClientOriginalName();
+
+            $file->move(public_path().'/assets/images/blog/',$img_name);
+            $model->image = $img_name;
+        }
+
+
+        $rules = [
+            'name' => 'required|max:40',
+            'intro' => 'required',
+            'text' => 'required',
+            'img' => 'required|image|max:110000'
+        ];
+
+        $messages = [
+            'required' => 'поле :attribute обязательно для заполнения!',
+            'name.max' => 'максимально допустимое количество сиволов для поля :attribute - :max',
+            'image' => 'загружаемый файл должен быть изображением',
+            'img.max' => 'превышен допустимый размер загружаемого файла'
+        ];
+
+        $this->validate($request,$rules,$messages);
+
+        if($model->save()) {
+            $model->tags()->attach($request->tags);
+            return redirect()->back()->with('message','Статья добавлена!');
+        } else {
+            return redirect()->back()->with('message','при добавлении произошла ошибка!');
+        }
+
+
+    }
 
 }

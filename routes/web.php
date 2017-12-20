@@ -67,6 +67,22 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'],function (){
 
     });
 
+    Route::group(['prefix' => 'blog'],function () {
+
+        Route::get('/view','BlogController@viewAdminArticles')->name('admin_articles');
+
+        Route::get('/update/{id}','BlogController@viewUpdateArticle')->name('update_article');
+        Route::post('/update/{id}','BlogController@updateArticle');
+
+
+        Route::get('/add_article','BlogController@viewAddArticle')->name('add_article');
+        Route::post('/add_article','BlogController@addArticle');
+
+        Route::get('/delete/{id}',"BlogController@deleteArticle")->name('delete_article');
+
+
+    });
+
 
 });
 
