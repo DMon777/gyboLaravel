@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Comments;
+use App\Http\Requests\BlogValidator;
+use function foo\func;
 use Illuminate\Http\Request;
 use App\Articles;
 use App\Categories;
 use App\Tags;
 use DB;
+use Gate;
 
 class BlogController extends Controller
 {
@@ -160,9 +163,11 @@ class BlogController extends Controller
 
     public function updateArticle (Request $request,$id)
     {
-
         $model = Articles::find($id);
-
+//        if(Gate::denies('delete-article',$model)){
+//            return redirect()->back()->with('message','Для того чтобы редактировать статьи вы должны быть
+//            администратором или автором статьи!');
+//        }
         $model->name = $request->name;
         $model->intro = $request->intro;
         $model->text = $request->text;
@@ -203,7 +208,7 @@ class BlogController extends Controller
         ]);
     }
 
-    public function addArticle(Request $request)
+    public function addArticle(BlogValidator $request)
     {
         $author_id = $request->user()->id;
         $model = new Articles();
@@ -214,10 +219,10 @@ class BlogController extends Controller
 
         $model->category_id = $request->category;
         $model->author_id = $author_id;
+        $model->date = time();
 
-
-        if($request->hasFile('img')) {
-            $file = $request->file('img');
+        if($request->hasFile('image')) {
+            $file = $request->file('image');
 
             $img_name = $file->getClientOriginalName();
 
@@ -225,31 +230,31 @@ class BlogController extends Controller
             $model->image = $img_name;
         }
 
-
-        $rules = [
-            'name' => 'required|max:40',
-            'intro' => 'required',
-            'text' => 'required',
-            'img' => 'required|image|max:110000'
-        ];
-
-        $messages = [
-            'required' => 'поле :attribute обязательно для заполнения!',
-            'name.max' => 'максимально допустимое количество сиволов для поля :attribute - :max',
-            'image' => 'загружаемый файл должен быть изображением',
-            'img.max' => 'превышен допустимый размер загружаемого файла'
-        ];
-
-        $this->validate($request,$rules,$messages);
-
         if($model->save()) {
             $model->tags()->attach($request->tags);
             return redirect()->back()->with('message','Статья добавлена!');
         } else {
             return redirect()->back()->with('message','при добавлении произошла ошибка!');
         }
+    }
+
+    public function deleteArticle($id)
+    {
+
+        $model = Articles::find($id);
+
+        if(Gate::denies('delete-article',$model)){
+            return redirect()->back()->with('message','Для того чтобы удалять статьи вы должны быть 
+            администратором или автором статьи!');
+        }
 
 
+        $article_name = $model->name;
+        $model->tags()->detach($model->tags);
+        $model->comments()->delete();
+        if($model->delete()){
+            return redirect()->back()->with('message','статья - '. $article_name .' удалена!!!');
+        }
     }
 
 }

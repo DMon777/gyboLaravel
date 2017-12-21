@@ -27,6 +27,7 @@ class classValidator extends FormRequest
             'name' => 'required',
             'short_description' => 'required',
             'description' => 'required',
+            'img' => 'required|image'
         ];
     }
 
@@ -34,6 +35,7 @@ class classValidator extends FormRequest
     {
         return [
             'required' => 'ПОле :attribute обязательно для заполнения ',
+            'image' => 'нужно изображение'
         ];
     }
 }

@@ -35,6 +35,10 @@
                                     <input type="text" name = "name" value="{{old('name')}}" class="form-control">
                                 </div>
                                 <div class="form-group">
+                                    <label> Password</label>
+                                    <input type="password" name = "password" value="" class="form-control">
+                                </div>
+                                <div class="form-group">
                                     <label> phone</label>
                                     <input type="text" name = "phone" value="{{old('phome')}}" class="form-control">
                                 </div>
@@ -61,6 +65,7 @@
                                     <input type="file" name="img">
                                 </div>
 
+
                                 <div class="form-group">
                                     <label>Классы</label>
                                     @foreach($all_classes as $all_class)
@@ -72,6 +77,20 @@
                                             </label>
                                         </div>
                                     @endforeach
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>Права</label>
+                                    <select name = "roles" class="form-control">
+                                        @foreach($roles as $role)
+                                            <option  value="{{$role->id}}" >
+
+
+                                                {{ $role->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 {{--  =====================================    --}}

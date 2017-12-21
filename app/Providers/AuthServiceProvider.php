@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Articles;
 use App\Trainers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -65,6 +66,21 @@ class AuthServiceProvider extends ServiceProvider
             return false;
 
         });
+
+        Gate::define('delete-article',function (Trainers $user,Articles $article) {
+
+        foreach ($user->roles as $role) {
+            if( $role->name == "Admin") return true;
+        }
+        if($user->id == $article->author_id) return true;
+
+
+        return false;
+
+          });
+
+
+
 
 
         //

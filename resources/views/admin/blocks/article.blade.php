@@ -24,6 +24,12 @@
             @endforeach
         @endif
 
+
+        @can('delete-article',$article)
+
+
+
+
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -105,6 +111,16 @@
             <!-- /.panel -->
         </div>
         <!-- /.col-lg-12 -->
+            
+            @else
+                <div class="alert alert-danger">
+                    Вы не можете редактировать статью автором которой вы не являетесь!!!
+                </div>
+
+            @endcan
+
+
+
     </div>
     <script>
         CKEDITOR.replace( 'editor' );

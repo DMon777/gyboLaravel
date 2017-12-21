@@ -38,7 +38,7 @@
                             <td>{{ $num }}</td>
                             <td>{{ $article->name }}</td>
                             <td><a href="{{ route('update_article',['id' => $article->id]) }}"> <i class="fa fa-pencil" ></i> update </a> </td>
-                            <td > <a data-target="#myModal" class="text-danger delete_aritcle" href = "{{route('delete_article',['id' => $article->id])}}"> <i class="glyphicon glyphicon-trash" ></i>  delete </a></td>
+                            <td > <a data-target="#myModal" class="text-danger delete_article" href = "{{route('delete_article',['id' => $article->id])}}"> <i class="glyphicon glyphicon-trash" ></i>  delete </a></td>
                         </tr>
 
                         @php
@@ -62,7 +62,7 @@
                             <h4 class="modal-title">Удаление!!!</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Вы действительно хотите удалить этот класс;</p>
+                            <p>Вы действительно хотите удалить статью?;</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Нет</button>

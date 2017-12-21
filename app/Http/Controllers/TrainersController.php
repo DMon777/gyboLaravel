@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes;
+use App\Http\Requests\TrainersValidator;
 use Illuminate\Http\Request;
 use App\Trainers;
 use PHPMailer;
@@ -98,7 +99,7 @@ class TrainersController extends Controller
             ]);
     }
 
-    public function updateTrainer(Request $request,$id)
+    public function updateTrainer(TrainersValidator $request,$id)
     {
 
         $model = Trainers::find($id);
@@ -134,10 +135,12 @@ class TrainersController extends Controller
     public function actionAddTrainer()
     {
         $all_classes = Classes::all();
-        return view('admin.pages.add_trainer',['all_classes' => $all_classes]);
+        $roles = Roles::all();
+
+        return view('admin.pages.add_trainer',['all_classes' => $all_classes,'roles' => $roles]);
     }
 
-    public function addTrainer(Request $request)
+    public function addTrainer(TrainersValidator $request)
     {
         $model = new Trainers();
 
@@ -146,45 +149,22 @@ class TrainersController extends Controller
         $model->specialization = $request->specialization;
         $model->phone = $request->phone;
         $model->email = $request->email;
+        $model->password = bcrypt($request->password);
 
         if($request->hasFile('img')) {
             $file = $request->file('img');
-
-            $size = $file->getSize();
-            if($size < 11000){
+          //  $size = $file->getSize();
                 $img_name = $file->getClientOriginalName();
-
                 $file->move(public_path().'/assets/images/team/',$img_name);
                 $model->img = $img_name;
-            }
-
         }
-
-        $rules = [
-            'name' => 'required|max:20',
-            'email' => 'required|email',
-            'description' => 'required',
-            'phone' => 'required',
-            'specialization' => 'required',
-            'img' => 'required|image|max:110000'
-        ];
-
-        $messages = [
-            'required' => 'поле :attribute обязательно для заполнения!',
-            'email' => 'поле :attribute должно соответствовать email адресу',
-            'name.max' => 'максимально допустимое количество сиволов для поля :attribute - :max',
-            'image' => 'загружаемый файл должен быть изображением',
-            'img.max' => 'превышен допустимый размер загружаемого файла'
-
-        ];
-
-        $this->validate($request,$rules,$messages);
 
         if($model->save()) {
             $model->classes()->attach($request->classes);
-            return redirect()->back()->with('message','данные обновлены!');
+            $model->roles()->attach($request->roles);
+            return redirect()->back()->with('message','данные добавлены!');
         } else {
-            return redirect()->back()->with('message','при обновлении произошла ошибка!');
+            return redirect()->back()->with('message','при добавлении произошла ошибка!');
         }
 
     }

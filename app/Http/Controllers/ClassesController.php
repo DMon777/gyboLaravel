@@ -123,7 +123,7 @@ class ClassesController extends Controller
 
             $img_name = $file->getClientOriginalName();
 
-            $input['images'] = $file->getClientOriginalName();
+            //$input['images'] = $file->getClientOriginalName();
             $file->move(public_path().'/assets/images/photos/',$img_name);
             $model->img = $img_name;
         }
