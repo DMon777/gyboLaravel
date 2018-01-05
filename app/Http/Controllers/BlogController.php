@@ -72,8 +72,7 @@ class BlogController extends Controller
 
     public function actionArticle($id)
     {
-
-        $article = Articles::find($id);
+        $article = Articles::findOrFail($id);
         $title = $article->name;
       //  $comments = Comments::where('article_id','=',$id)->get();
       // $comments = $article->comments;

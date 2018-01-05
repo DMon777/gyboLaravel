@@ -21,6 +21,7 @@
     <link href="{{ asset('admin_assets/vendor/metisMenu/metisMenu.min.css')  }} }}" rel="stylesheet">
 
     <script src="{{ asset('admin_assets/dist/js/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('admin_assets/dist/js/ckfinder/ckfinder.js') }}"></script>
     <!-- Custom Fonts -->
     <link href="{{ asset('admin_assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 

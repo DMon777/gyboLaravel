@@ -111,7 +111,7 @@
             <!-- /.panel -->
         </div>
         <!-- /.col-lg-12 -->
-            
+
             @else
                 <div class="alert alert-danger">
                     Вы не можете редактировать статью автором которой вы не являетесь!!!
@@ -123,7 +123,8 @@
 
     </div>
     <script>
-        CKEDITOR.replace( 'editor' );
+       var editor =  CKEDITOR.replace( 'editor' );
+       CKFinder.setupCKEditor(editor);
     </script>
 </div>
 <!-- /.container-fluid -->
